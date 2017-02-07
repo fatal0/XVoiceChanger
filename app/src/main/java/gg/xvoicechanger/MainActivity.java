@@ -62,8 +62,9 @@ public class MainActivity extends Activity {
         SeekBar tempoValue = (SeekBar) findViewById(R.id.tempoValue);
         SeekBar pitchValue = (SeekBar) findViewById(R.id.pitchValue);
         SeekBar rateValue = (SeekBar) findViewById(R.id.rateValue);
-        final CheckBox enableWechatValue = (CheckBox) findViewById(R.id.enableWechat);
+        final CheckBox enableWeChatValue = (CheckBox) findViewById(R.id.enableWeChat);
         final CheckBox enableTelegramValue = (CheckBox) findViewById(R.id.enableTelegram);
+        final CheckBox enablePlusMessengerValue = (CheckBox) findViewById(R.id.enablePlusMessenger);
 
         Button save = (Button) findViewById(R.id.button);
 
@@ -75,8 +76,9 @@ public class MainActivity extends Activity {
                 editor.putInt("pitch", pitch);
                 editor.putInt("rate", rate);
 
-                editor.putBoolean("enableWechat", enableWechatValue.isChecked());
+                editor.putBoolean("enableWeChat", enableWeChatValue.isChecked());
                 editor.putBoolean("enableTelegram", enableTelegramValue.isChecked());
+                editor.putBoolean("enablePlusMessenger", enablePlusMessengerValue.isChecked());
                 editor.commit();
 
                 Toast toast = Toast.makeText(MainActivity.this, "successfully saved", Toast.LENGTH_SHORT);
@@ -100,14 +102,16 @@ public class MainActivity extends Activity {
         tempo = sharedPreferences.getInt("tempo", -20);
         pitch = sharedPreferences.getInt("pitch", 8);
         rate = sharedPreferences.getInt("rate", 1);
-        boolean enableWechat = sharedPreferences.getBoolean("enableWechat", true);
+        boolean enableWeChat = sharedPreferences.getBoolean("enableWeChat", true);
         boolean enableTelegram = sharedPreferences.getBoolean("enableTelegram", true);
+        boolean enablePlusMessenger = sharedPreferences.getBoolean("enablePlusMessenger", true);
 
         editor.putInt("tempo", tempo);
         editor.putInt("pitch", pitch);
         editor.putInt("rate", rate);
-        editor.putBoolean("enableWechat", enableWechat);
+        editor.putBoolean("enableWeChat", enableWeChat);
         editor.putBoolean("enableTelegram", enableTelegram);
+        editor.putBoolean("enablePlusMessenger", enablePlusMessenger);
         editor.commit();
 
         tempoValue.setProgress(tempo + 50);

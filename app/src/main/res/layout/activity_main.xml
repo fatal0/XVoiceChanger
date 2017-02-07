@@ -121,19 +121,28 @@
         android:layout_height="wrap_content">
 
         <CheckBox
-            android:text="Enable Wechat"
+            android:text="WeChat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/enableWechat"
+            android:id="@+id/enableWeChat"
             android:textAppearance="@android:style/TextAppearance.Material"
             style="@android:style/Widget.Material.CompoundButton.CheckBox"
             android:checked="true" />
 
         <CheckBox
-            android:text="Enable Telegram"
+            android:text="Telegram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/enableTelegram"
+            android:textAppearance="@android:style/TextAppearance.Material"
+            style="@android:style/Widget.Material.CompoundButton.CheckBox"
+            android:checked="true" />
+
+        <CheckBox
+            android:text="Plus Messenger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/enablePlusMessenger"
             android:textAppearance="@android:style/TextAppearance.Material"
             style="@android:style/Widget.Material.CompoundButton.CheckBox"
             android:checked="true" />

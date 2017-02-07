@@ -24,7 +24,7 @@ public class VoiceChanger implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
 
-        if(!lpparam.packageName.equals("org.telegram.messenger") && !lpparam.packageName.equals("com.tencent.mm")){
+        if(!lpparam.packageName.equals("org.telegram.messenger") && !lpparam.packageName.equals("org.telegram.plus") && !lpparam.packageName.equals("com.tencent.mm")){
             return;
         }
 
@@ -60,22 +60,21 @@ public class VoiceChanger implements IXposedHookLoadPackage {
 
                 xSharedPreferences.reload();
 
-                if (lpparam.packageName.equals("com.tencent.mm") && xSharedPreferences.getBoolean("enableWechat", false)){
-                    Log.d("XVoiceChanger", "com.tencent.mm");
+                if (lpparam.packageName.equals("com.tencent.mm") && xSharedPreferences.getBoolean("enableWeChat", false)){
+                    Log.d("XVoiceChanger", lpparam.packageName);
                     Log.d("XVoiceChanger", "args[0] = "+((byte[])param.args[0]).length);
                     Log.d("XVoiceChanger", "args[2] before = "+ param.args[2]);
                     param.args[2] = (int) param.args[2] - 1024;
                     Log.d("XVoiceChanger", "args[2] after = "+ param.args[2]);
 
                 }
-                else if(lpparam.packageName.equals("org.telegram.messenger") && xSharedPreferences.getBoolean("enableTelegram", false)){
-                    Log.d("XVoiceChanger", "org.telegram.messenger");
+                else if(lpparam.packageName.equals("org.telegram.messenger") && xSharedPreferences.getBoolean("enableTelegram", false) || lpparam.packageName.equals("org.telegram.plus") && xSharedPreferences.getBoolean("enablePlusMessenger", false)){
+                    Log.d("XVoiceChanger", lpparam.packageName);
                     Log.d("XVoiceChanger", "args[0] = "+((ByteBuffer)param.args[0]).capacity());
                     Log.d("XVoiceChanger", "args[1] before = "+ param.args[1]);
                     param.args[1] = (int) param.args[1] - 1024;
                     Log.d("XVoiceChanger", "args[1] after = "+ param.args[1]);
                 }
-
 
             }
 
@@ -84,7 +83,9 @@ public class VoiceChanger implements IXposedHookLoadPackage {
 
                 xSharedPreferences.reload();
 
-                if (lpparam.packageName.equals("com.tencent.mm") && xSharedPreferences.getBoolean("enableWechat", false)){
+                if (lpparam.packageName.equals("com.tencent.mm") && xSharedPreferences.getBoolean("enableWeChat", false)){
+
+                    Log.d("XVoiceChanger", lpparam.packageName);
 
                     int readsize = (int) param.getResult();
 
@@ -103,9 +104,9 @@ public class VoiceChanger implements IXposedHookLoadPackage {
                     }
 
                 }
-                else if(lpparam.packageName.equals("org.telegram.messenger") && xSharedPreferences.getBoolean("enableTelegram", false)){
+                else if(lpparam.packageName.equals("org.telegram.messenger") && xSharedPreferences.getBoolean("enableTelegram", false) || lpparam.packageName.equals("org.telegram.plus") && xSharedPreferences.getBoolean("enablePlusMessenger", false)){
 
-                    Log.d("XVoiceChanger", "org.telegram.messenger");
+                    Log.d("XVoiceChanger", lpparam.packageName);
 
                     int readsize = (int) param.getResult();
 
